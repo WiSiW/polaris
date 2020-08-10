@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.polaris.blog.dao.mapper.MenuMapper">
+    <select id="listMenu" parameterType="int" resultType="com.polaris.blog.pojo.Menu">
+	   select * from menu_list where menu_parent_id = #{menu_parent_id}
+	</select>
+    <select id="getMenu" parameterType="map" resultType="com.polaris.blog.pojo.Menu">
+	   select * from menu_list
+	   <where>
+		   <if test="menu_id != null and menu_id != '' and menu_id != 'null'">
+			   menu_id = #{menu_id}
+		   </if>
+	   </where>
+	</select>
+    <insert id="insertMenu" parameterType="map" useGeneratedKeys="true" keyProperty="menu_id">
+	   insert into menu_list(menu_id,menu_key,menu_introduction,menu_path,menu_parent_id,menu_sort_index,menu_title,menu_icon)
+	   values (#{menu_id},#{menu_key},#{menu_introduction},#{menu_path},#{menu_parent_id},#{menu_sort_index},#{menu_title},#{menu_icon})
+	</insert>
+	<update id="updateMenu" parameterType="map" useGeneratedKeys="true" keyProperty="menu_id">
+		update menu_list
+		<set>
+			<if test="menu_id != null and menu_id != '' and menu_id != 'null'">
+				menu_id = #{menu_id},
+			</if>
+			<if test="menu_key != null and menu_key != '' and menu_key != 'null'">
+				menu_key = #{menu_key},
+			</if>
+			<if test="menu_parent_id != null and menu_parent_id != '' and menu_parent_id != 'null'">
+				menu_parent_id = #{menu_parent_id},
+			</if>
+			<if test="menu_sort_index != null and menu_sort_index != '' and menu_sort_index != 'null'">
+				menu_sort_index = #{menu_sort_index},
+			</if>
+			<if test="menu_title != null and menu_title != '' and menu_title != 'null'">
+				menu_title = #{menu_title},
+			</if>
+			<if test="menu_icon != null and menu_icon != '' and menu_icon != 'null'">
+				menu_icon = #{menu_icon},
+			</if>
+			<if test="menu_introduction != null and menu_introduction != '' and menu_introduction != 'null'">
+				menu_introduction = #{menu_introduction},
+			</if>
+			<if test="menu_path != null and menu_path != '' and menu_path != 'null'">
+				menu_path = #{menu_path},
+			</if>
+		</set>
+		where menu_id = #{menu_id}
+	</update>
+	<delete id="delMenu" parameterType="int">
+		delete from menu_list where menu_id = #{menu_id}
+	</delete>
+</mapper>

@@ -13,8 +13,9 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 @RestController
+@RequestMapping("Mcake/")
 public class LoginController {
-    @RequestMapping("Mcake/getVerifiCode")
+    @RequestMapping("getVerifiCode")
     @ResponseBody
     public void getVerifiCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
         /*
@@ -28,20 +29,11 @@ public class LoginController {
         ivc.output(image, response.getOutputStream());//将验证码图片响应给客户端
     }
 
-    @RequestMapping("Mcake/Login_authentication")
+    @RequestMapping("Login_authentication")
     @ResponseBody
     public String Login_authentication(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("utf-8");
         String session_vcode=(String) request.getSession().getAttribute("text");    //从session中获取真正的验证码
         return session_vcode;
-    }
-
-    @RequestMapping(value = "/api/login")
-    public void login(HttpServletRequest request) throws UnsupportedEncodingException {
-        System.out.println(request.getParameter("name"));
-        System.out.println(request.getParameter("codeImg"));
-        request.setCharacterEncoding("utf-8");
-        String session_vcode=(String) request.getSession().getAttribute("text");
-        System.out.println(session_vcode);
     }
 }

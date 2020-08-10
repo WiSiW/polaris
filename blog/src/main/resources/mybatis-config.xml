@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 引入数据库连接配置 -->
+    <properties resource="application.properties"/>
+
+    <!-- 定义别名 -->
+    <typeAliases>
+        <!-- 方式一  、直接定义 -->
+        <typeAlias type="com.polaris.blog.pojo.User" alias="User"/>
+        <typeAlias type="com.polaris.blog.pojo.Article" alias="Article"/>
+
+        <!-- 方式二、 定义包名 -->
+        <!--<package name="com.xfishs.pojo" />-->
+    </typeAliases>
+
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="helperDialect" value="mysql"/>
+        </plugin>
+    </plugins>
+    <!--定义数据源-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${spring.datasource.driver-class-name}"/>
+                <property name="url" value="${spring.datasource.url}"/>
+                <property name="username" value="${spring.datasource.username}"/>
+                <property name="password" value="${spring.datasource.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--定义映射文件-->
+    <mappers>
+        <!--单次加载一个mapper映射文件-->
+        <mapper resource="mapper/article.xml"/>
+        <mapper resource="mapper/user.xml"/>
+        <mapper resource="mapper/menu.xml"/>
+        <!--批量加载mapper-->
+<!--                <package name="mapper"/>-->
+    </mappers>
+</configuration>

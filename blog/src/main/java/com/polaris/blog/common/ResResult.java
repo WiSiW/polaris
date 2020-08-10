@@ -1,36 +1,16 @@
 package com.polaris.blog.common;
 
 import lombok.Data;
-import lombok.ToString;
 
 @Data
-@ToString
 public class ResResult {
     private Object data;
-    private int resultCode;
-    private String resultMsg;
+    private int status;
+    private String message;
 
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
+    public ResResult(Object data, int status, String message) {
         this.data = data;
-    }
-
-    public int getResultCode() {
-        return resultCode;
-    }
-
-    public void setResultCode(int resultCode) {
-        this.resultCode = resultCode;
-    }
-
-    public String getResultMsg() {
-        return resultMsg;
-    }
-
-    public void setResultMsg(String resultMsg) {
-        this.resultMsg = resultMsg;
+        this.status = status;
+        this.message = message;
     }
 }

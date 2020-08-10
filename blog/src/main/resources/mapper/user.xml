@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.polaris.blog.dao.mapper.UserMapper">
+	<select id="login" parameterType="map" resultType="int">
+	   select user_id from user_list where user_name = #{user_name} and password = #{password}
+	</select>
+    <select id="listUser" parameterType="map" resultType="com.polaris.blog.pojo.User">
+	   select * from user_list
+	   <where>
+		   <if test="user_name != null and user_name != ''">
+			   user_name = #{user_name}
+		   </if>
+	   </where>
+	</select>
+    <select id="getUser" parameterType="map" resultType="com.polaris.blog.pojo.User">
+	   select * from user_list
+		<where>
+			<if test="user_id != null and user_id != ''">
+				user_id = #{user_id}
+			</if>
+			<if test="user_name != null and user_name != ''">
+				user_name = #{user_name}
+			</if>
+		</where>
+	</select>
+    <insert id="insertUser" parameterType="com.polaris.blog.pojo.User" useGeneratedKeys="true" keyProperty="user_id">
+	   insert into user_list(user_id,user_name,password,u_head_img,u_create_time)
+	   values (#{user_id},#{user_name},#{password},#{u_head_img},#{u_create_time})
+	</insert>
+    <update id="updateUser" parameterType="com.polaris.blog.pojo.User" useGeneratedKeys="true" keyProperty="user_id">
+	   update user_list
+	   <set>
+		   <if test="user_name != null and user_name != ''">
+			   user_name = #{user_name},
+		   </if>
+		   <if test="password != null and password != 'null'">
+			   password = #{password},
+		   </if>
+		   <if test="u_head_img != null and u_head_img != ''">
+			   u_head_img = #{u_head_img},
+		   </if>
+		   <if test="u_create_time != null and u_create_time != ''">
+			   u_create_time = #{u_create_time},
+		   </if>
+		   <if test="token != null and token != ''">
+			   token = #{token},
+		   </if>
+	   </set>
+	   where user_id = #{user_id}
+	</update>
+	<delete id="delUser" parameterType="int">
+		delete from user_list where user_id = #{user_id}
+	</delete>
+</mapper>

@@ -1,37 +1,19 @@
 package com.polaris.blog.pojo;
 
 import lombok.Data;
-import lombok.ToString;
 
 import java.util.List;
 
 @Data
-@ToString
 public class Menu {
-    private String title;
-    private Menu menuList;
+    private int menu_id;
+    private int menu_parent_id;
+    private String menu_title;
+    private String menu_key;
+    private int menu_sort_index;
+    private String menu_icon;
+    private String menu_introduction;
+    private String menu_path;
+    private List<Menu> menuList;
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Menu getMenuList() {
-        return menuList;
-    }
-
-    public void setMenuList(Menu menuList) {
-        this.menuList = menuList;
-    }
-
-    @Override
-    public String toString() {
-        return "Menu{" +
-                "title='" + title + '\'' +
-                ", menuList=" + menuList +
-                '}';
-    }
 }
