@@ -1,4 +1,4 @@
-# polaris前端博客项目
+# polaris后台管理项目
 
 ## 项目描述
 
@@ -14,8 +14,7 @@ web文件内为前端文件，使用React框架，blog-admin内为后台管理�
 
 ## 演示地址
 
-http://wsw.ngrok.ipathology.net:8000/web/index
+http://wsw.ngrok.ipathology.net:8000/
 
-## 登录页
-
-![登录页](C:\Users\wsw\AppData\Roaming\Typora\typora-user-images\image-20200810200224943.png)
+账号：admin
+密码：123456
